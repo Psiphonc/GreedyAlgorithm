@@ -1,4 +1,4 @@
-def Ackerman(n, m):
+def ackerman(n, m):
     if n == 1 and m == 0:
         return 2
     elif n == 0 and m >= 0:
@@ -6,7 +6,7 @@ def Ackerman(n, m):
     elif n >= 2 and m == 0:
         return n + 2
     else:
-        return Ackerman(Ackerman(n - 1, m), m - 1)
+        return ackerman(ackerman(n - 1, m), m - 1)
 
 
-print(Ackerman(2, 2))
+print(ackerman(2, 2))
