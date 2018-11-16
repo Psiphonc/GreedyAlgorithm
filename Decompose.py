@@ -10,4 +10,6 @@ def decompose(n, m):
     return decompose(n, m - 1) + decompose(n - m, m)
 
 
-print(decompose(6, 6))
+n = int(input("n:"))
+m = int(input("m:"))
+print(decompose(n, m))

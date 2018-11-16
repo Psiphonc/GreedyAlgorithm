@@ -1,8 +1,6 @@
 def perm(list, k, m):
     if k == m:
-        for i in range(0, m + 1):
-            print(list[i], end='')
-        print('\n')
+        print(ls)
     else:
         for i in range(k, m + 1):
             list[k], list[i] = list[i], list[k]
@@ -10,4 +8,6 @@ def perm(list, k, m):
             list[k], list[i] = list[i], list[k]
 
 
-print(perm([1, 2, 3, 4, 5, 6], 0, 5))
+ls = input("list:")
+ls = list(ls)
+print(perm(ls, 0, len(ls) - 1))

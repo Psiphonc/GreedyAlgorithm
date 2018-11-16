@@ -9,4 +9,6 @@ def ackerman(n, m):
         return ackerman(ackerman(n - 1, m), m - 1)
 
 
-print(ackerman(2, 2))
+n = int(input("n:"))
+m = int(input("m:"))
+print(ackerman(n, m))
