@@ -74,9 +74,6 @@ class Graph:
         path = [min_edge.st]
         path_edge = []
         self.fin_all_vtx(min_edge.st, heap, path)
-        # self.fin_all_vtx(min_edge.ed, heap, path)
-        # for i in heap:
-        #     print(str(i.st)+' '+str(i.ed)+' '+str(i.value))
         while len(path) < len(self.vertex):
             current_edge = heapq.heappop(heap)
             path.append(current_edge.ed)
@@ -95,8 +92,32 @@ class Graph:
                 i.value = sys.maxsize
         heapq.heapify(heap)
 
+    def kruskal(self):
+        heap = []
+        for i in range(0, len(self.vertex)):
+            for j in range(0, i):
+                heapq.heappush(heap, self.get_edge(i, j))
+        union_branch = []
+        edge_path = []
+        for i in self.vertex:
+            union_branch.append([i])
+        while len(union_branch) > 1:
+            current_edge = heapq.heappop(heap)
+            ub1, ub2 = 0, 0
+            for iub, ub in enumerate(union_branch):
+                if current_edge.st in ub:
+                    ub1 = iub
+                if current_edge.ed in ub:
+                    ub2 = iub
+            if ub1 == ub2:
+                continue
+            union_branch[ub1] = union_branch[ub1] + union_branch[ub2]
+            del union_branch[ub2]
+            edge_path.append(current_edge)
+        return edge_path
 
-v = [1, 2, 3, 4, 5, 6]
+
+v = [0, 1, 2, 3, 4, 5]
 nul = sys.maxsize
 e = [
     [nul, 6, 1, 5, nul, nul],
@@ -108,6 +129,11 @@ e = [
 ]
 
 graph = Graph(v, e)
-tree=graph.prime()
+tree = graph.prime()
+print('Prime:')
 for t in tree:
-    print(t)
+    print(t, end=' ')
+tree = graph.kruskal()
+print('\nKruskal:')
+for t in tree:
+    print(t, end=' ')
