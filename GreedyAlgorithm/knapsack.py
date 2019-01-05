@@ -44,9 +44,24 @@ def knapsac(c, w, v, x):
     return opt
 
 
+def knapsac01(c, w, v, x):
+    opt = 0.0
+    elements = []
+    for i,ww in enumerate(w):
+        elements.append(Element(ww, v[i], i))
+    sorted(elements)
+    for e in elements:
+        if e.weight < c:
+            c -= e.weight
+            opt += e.value
+            x[e.index] = 1
+    return opt
+
 c = 50
 w = [10, 20, 30]
 v = [60, 100, 120]
 x = [0] * 3
 
-print(knapsac(c, w, v, x))
+print(str(knapsac(c, w, v, x)) + '  ' + x.__str__())
+x = [0] * 3
+print(str(knapsac01(c, w, v, x)) + '  ' + x.__str__())
