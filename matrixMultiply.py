@@ -26,10 +26,10 @@ p = [30, 35, 15, 5, 10, 20, 25]
 m = [[0 for i in range(7)] for j in range(7)]
 s = [[0 for i in range(7)] for j in range(7)]
 matrixChain(p, m, s)
-print('m')
-for t in m:
-    print(t)
-print('s')
-for t in s:
-    print(t)
+# print('m')
+# for t in m:
+#     print(t)
+# print('s')
+# for t in s:
+#     print(t)
 traceback(s, 1, 6)
