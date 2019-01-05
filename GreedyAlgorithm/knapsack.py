@@ -23,31 +23,31 @@ class Element:
 
 def knapsac(c, w, v, x):
     n = len(v)
-    d = []
+    elements = []
     for i in range(0, n):
-        d.append(Element(w[i], v[i], i))
-    sorted(d)
+        elements.append(Element(w[i], v[i], i))
+    sorted(elements)
     opt = 0.0
-    for i in x:
-        i = 0
-    flag = 0
-    for i in d:
-        if i.weight > c:
-            flag = i.index
+    i = 0
+    for i, e in enumerate(elements):
+        x[i] = 0
+        if e.weight < c:
+            x[e.index] = 1
+            opt += e.value
+            c -= e.weight
+        else:
             break
-        x[i.index] = 1
-        opt += i.value
-        c -= i.weight
-    if flag != 0:
-        x[d[flag].index] = c / d[flag].weight
-        opt += x[d[flag].index] * d[flag].value
+    if c > 0:
+        d = elements[i]
+        x[d.index] = c / d.weight
+        opt += x[d.index] * d.value
     return opt
 
 
 def knapsac01(c, w, v, x):
     opt = 0.0
     elements = []
-    for i,ww in enumerate(w):
+    for i, ww in enumerate(w):
         elements.append(Element(ww, v[i], i))
     sorted(elements)
     for e in elements:
@@ -57,11 +57,12 @@ def knapsac01(c, w, v, x):
             x[e.index] = 1
     return opt
 
+
 c = 50
 w = [10, 20, 30]
 v = [60, 100, 120]
 x = [0] * 3
 
-print(str(knapsac(c, w, v, x)) + '  ' + x.__str__())
+print('背包问题：'+str(knapsac(c, w, v, x)) + '  ' + x.__str__())
 x = [0] * 3
-print(str(knapsac01(c, w, v, x)) + '  ' + x.__str__())
+print('01背包问题:'+str(knapsac01(c, w, v, x)) + '  ' + x.__str__())
